@@ -1,0 +1,15 @@
+﻿tile.tennox_bacteria.name=Bakterienkolonie
+tile.tennox_must.name=Schimmel
+tile.tennox_replacer.name=Ersetzer Bakterienkolonie
+tile.tennox_jammer.name=Bakterien Störsenderblock
+item.tennox_bacteriaitem.name=Handvoll Bakterien
+item.tennox_jammeritem.name=Bakterien Störsender
+item.tennox_bacteriapotion.name=Bakterien Wurftrank
+achievement.must=Schimmel!
+achievement.must.desc=Crafte etwas Schimmel!
+achievement.bacteria=Bacterien!
+achievement.bacteria.desc=Züchte ein paar Bakterien!
+achievement.bacterium=Bacteria Mod!
+achievement.bacterium.desc=Crafte deine erste Bakterienkolonie!
+achievement.jammer=STÖRSENDER!
+achievement.jammer.desc=Zerstöre eine Bakterienkolonie mit dem Störsender!

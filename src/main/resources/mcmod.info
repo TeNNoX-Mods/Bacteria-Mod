@@ -1,0 +1,16 @@
+[
+{
+  "modid": "tennox_bacteria",
+  "name": "Bacteria Mod",
+  "description": "Epic destruction",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "www.minecraftforum.net/topic/880935-164/",
+  "updateUrl": "",
+  "authors": ["TeNNoX"],
+  "credits": "TeNNoX for idea, coding and texturing",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

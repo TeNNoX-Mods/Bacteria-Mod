@@ -1,0 +1,15 @@
+tile.tennox_bacteria.name=Bacterium Colony
+tile.tennox_must.name=Must
+tile.tennox_replacer.name=Bacterium Replacer Colony
+tile.tennox_jammer.name=Bacterium Jammer Block
+item.tennox_bacteriaitem.name=Bunch of Bacteria
+item.tennox_jammeritem.name=Bacterium Jammer
+item.tennox_bacteriapotion.name=Bacterium Splash Potion
+achievement.must=Must!
+achievement.must.desc=Craft some Must!
+achievement.bacteria=Bacteria!
+achievement.bacteria.desc=Breed some Bacteria!
+achievement.bacterium=Bacteria Mod!
+achievement.bacterium.desc=Craft your first Bacterium Colony!
+achievement.jammer=JAMMER!
+achievement.jammer.desc=Jam a Bacterium Colony with the jammer item!
