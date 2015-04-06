@@ -40,13 +40,6 @@ public class BlockMust extends Block implements IBlockWithName {
 		setDefaultState(blockState.getBaseState().withProperty(GROWN, 0));
 	}
 
-	// @Override
-	// public int colorMultiplier(IBlockAccess iblockaccess, int i, int j, int k) {
-	// if (iblockaccess.getBlockMetadata(i, j, k) >= growTime)
-	// return 2411556;
-	// return 16777215;
-	// }
-
 	@Override
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 		if (!world.isRemote) {

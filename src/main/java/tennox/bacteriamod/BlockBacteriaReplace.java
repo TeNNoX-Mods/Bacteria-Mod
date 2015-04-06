@@ -14,9 +14,15 @@ public class BlockBacteriaReplace extends BlockContainer implements IBlockWithNa
 		super(Material.rock);
 		GameRegistry.registerBlock(this, name);
 		setUnlocalizedName(name);
-		
+
 		setCreativeTab(CreativeTabs.tabMisc);
 		setHardness(0.07F);
+	}
+
+	// super method in BlockContainer returns -1
+	@Override
+	public int getRenderType() {
+		return 3;
 	}
 
 	@Override

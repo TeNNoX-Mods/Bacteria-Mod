@@ -10,18 +10,24 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BlockBacteria extends BlockContainer implements IBlockWithName {
-	
+
 	public static final String name = "tennox_bacteria";
-	
+
 	ArrayList<Integer> food = new ArrayList<Integer>();
 
 	protected BlockBacteria() {
 		super(Material.rock);
 		GameRegistry.registerBlock(this, name);
 		setUnlocalizedName(name);
-		
+
 		setCreativeTab(CreativeTabs.tabMisc);
 		setHardness(0.07F);
+	}
+
+	// super method in BlockContainer returns -1
+	@Override
+	public int getRenderType() {
+		return 3;
 	}
 
 	@Override
