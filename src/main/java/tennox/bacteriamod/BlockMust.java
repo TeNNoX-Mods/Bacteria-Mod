@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class BlockMust extends Block implements IBlockWithName {
 	private final String name = "tennox_must";
 
-	public static final int MAX_GROW_INDEX = 2;
+	public static final int MAX_GROW_INDEX = 7;
 	public static final PropertyInteger GROWN = PropertyInteger.create("grown", 0, MAX_GROW_INDEX);
 
 	public int tick;
@@ -40,11 +40,15 @@ public class BlockMust extends Block implements IBlockWithName {
 		setDefaultState(blockState.getBaseState().withProperty(GROWN, 0));
 	}
 
+	// BlockCrops
 	@Override
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 		if (!world.isRemote) {
 			Block above = world.getBlockState(pos.up()).getBlock();
 			int meta = (Integer) state.getValue(GROWN);
+
+			if (meta >= MAX_GROW_INDEX)
+				return; // already fully grown
 
 			if (above == Blocks.water)
 				meta++;
@@ -52,6 +56,7 @@ public class BlockMust extends Block implements IBlockWithName {
 				meta++;
 			if (above != Blocks.flowing_water && above != Blocks.water)
 				meta = 0;
+			Bacteria.logger.info("Must at " + pos + " updates meta from " + state.getValue(GROWN) + " to " + meta);
 			world.setBlockState(pos, blockState.getBaseState().withProperty(GROWN, meta));
 		}
 	}
