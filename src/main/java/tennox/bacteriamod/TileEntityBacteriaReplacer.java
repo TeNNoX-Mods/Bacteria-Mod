@@ -1,17 +1,17 @@
 package tennox.bacteriamod;
 
-import java.util.ArrayList;
-
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 
 public class TileEntityBacteriaReplacer extends TileEntityBacteria {
 	Food replace;
 
 	public TileEntityBacteriaReplacer() {
-		block = Bacteria.replacer;
+		bacteriaBlock = Bacteria.replacer.getDefaultState();
 		do
 			colony = rand.nextInt();
 		while (Bacteria.jamcolonies.contains(Integer.valueOf(colony)));
@@ -19,22 +19,18 @@ public class TileEntityBacteriaReplacer extends TileEntityBacteria {
 
 	@Override
 	public void selectFood() {
-		int i = xCoord;
-		int j = yCoord;
-		int k = zCoord;
-		if (worldObj.isBlockIndirectlyGettingPowered(i, j, k)) {
-			Block above = worldObj.getBlock(i, j + 1, k);
-			Block below = worldObj.getBlock(i, j - 1, k);
-			if (above == Blocks.air || below == Blocks.air)
+		if (worldObj.isBlockIndirectlyGettingPowered(getPos()) > 0) {
+			IBlockState above = worldObj.getBlockState(getPos().up());
+			IBlockState below = worldObj.getBlockState(getPos().down());
+			if (above.getBlock() == Blocks.air || below.getBlock() == Blocks.air)
 				return;
-			if (above == Bacteria.replacer || below == Bacteria.replacer)
+			if (above.getBlock() == Bacteria.replacer || below.getBlock() == Bacteria.replacer)
 				return;
-			if (above == below && worldObj.getBlockMetadata(i, j - 1, k) == worldObj.getBlockMetadata(i, j + 1, k))
+			if (above == below)
 				return;
-			addFood(below, worldObj.getBlockMetadata(i, j - 1, k));
-			replace = new Food(above, worldObj.getBlockMetadata(i, j + 1, k));
-			worldObj.setBlockToAir(i, j + 1, k);
-
+			addFood(below);
+			replace = new Food(above);
+			worldObj.setBlockToAir(getPos().up());
 		}
 	}
 
@@ -44,12 +40,12 @@ public class TileEntityBacteriaReplacer extends TileEntityBacteria {
 	}
 
 	@Override
-	public void maybeEat(int i, int j, int k) {
-		if (isAtBorder(i, j, k))
+	public void maybeEat(BlockPos pos) {
+		if (isAtBorder(pos))
 			return;
-		if (isFood(worldObj.getBlock(i, j, k), worldObj.getBlockMetadata(i, j, k))) {
-			worldObj.setBlock(i, j, k, block);
-			TileEntity newtile = worldObj.getTileEntity(i, j, k);
+		if (isFood(worldObj.getBlockState(pos))) {
+			worldObj.setBlockState(pos, bacteriaBlock);
+			TileEntity newtile = worldObj.getTileEntity(pos);
 			TileEntityBacteriaReplacer newtile2 = (TileEntityBacteriaReplacer) newtile;
 			newtile2.food = food;
 			newtile2.colony = colony;
@@ -60,9 +56,9 @@ public class TileEntityBacteriaReplacer extends TileEntityBacteria {
 	@Override
 	public void die() {
 		if (replace != null)
-			worldObj.setBlock(xCoord, yCoord, zCoord, replace.block, replace.meta, 3);
+			worldObj.setBlockState(getPos(), replace.state);
 		else
-			worldObj.setBlockToAir(xCoord, yCoord, zCoord);
+			worldObj.setBlockToAir(getPos());
 		if (jammed)
 			ItemBacteriaJammer.num += 1L;
 	}
@@ -72,7 +68,7 @@ public class TileEntityBacteriaReplacer extends TileEntityBacteria {
 		super.readFromNBT(nbt);
 
 		Block r = Block.getBlockById(nbt.getInteger("replace"));
-		replace = new Food(r, nbt.getInteger("replace_meta"));
+		replace = new Food(r.getStateFromMeta(nbt.getInteger("replace_meta")));
 	}
 
 	@Override
@@ -80,8 +76,8 @@ public class TileEntityBacteriaReplacer extends TileEntityBacteria {
 		super.writeToNBT(nbt);
 
 		if (replace != null) {
-			nbt.setInteger("replace", Block.getIdFromBlock(replace.block));
-			nbt.setInteger("replace_meta", replace.meta);
+			nbt.setInteger("replace", Block.getIdFromBlock(replace.state.getBlock()));
+			nbt.setInteger("replace_meta", replace.state.getBlock().getMetaFromState(replace.state));
 		}
 	}
 }

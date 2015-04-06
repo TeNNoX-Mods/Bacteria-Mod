@@ -1,10 +1,12 @@
 package tennox.bacteriamod;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
@@ -20,30 +22,30 @@ class EntityBacteriaPotion extends EntityPotion {
 	}
 
 	@Override
-	protected void onImpact(MovingObjectPosition pos) {
-		if (pos.typeOfHit == MovingObjectType.BLOCK) { // RenderPotion
-			Block block = worldObj.getBlock(pos.blockX, pos.blockY, pos.blockZ);
-			int meta = worldObj.getBlockMetadata(pos.blockX, pos.blockY, pos.blockZ);
+	protected void onImpact(MovingObjectPosition objpos) {
+		BlockPos pos = objpos.getBlockPos();
+		if (objpos.typeOfHit == MovingObjectType.BLOCK) { // RenderPotion
+			IBlockState state = worldObj.getBlockState(pos);
 
-			if (TileEntityBacteria.isValidFood(block, meta)) {
-				worldObj.setBlock(pos.blockX, pos.blockY, pos.blockZ, Bacteria.bacteria, 0, 3);
-				TileEntity t = worldObj.getTileEntity(pos.blockX, pos.blockY, pos.blockZ);
+			if (TileEntityBacteria.isValidFood(state)) {
+				worldObj.setBlockState(pos, Bacteria.bacteria.getDefaultState());
+				TileEntity t = worldObj.getTileEntity(pos);
 
 				if (t != null && t instanceof TileEntityBacteria) {
 					TileEntityBacteria tile = (TileEntityBacteria) t;
-					tile.addFood(block, meta);
+					tile.addFood(state);
 					if (tile.shouldStartInstantly())
 						tile.startInstantly = true;
 				}
 			}
 
-			this.worldObj.playAuxSFX(2002, (int) Math.round(this.posX), (int) Math.round(this.posY), (int) Math.round(this.posZ), this.getPotionDamage());
+			this.worldObj.playAuxSFX(2002, this.getPosition(), this.getPotionDamage());
 			this.setDead();
 		}
 	}
 
 	@Override
-	public int getPotionDamage() { // 6,8,12
+	public int getPotionDamage() { // 6,8,12 //TODO what is this? comment this please. (magic numbers :P)
 		return 12;
 	}
 }
