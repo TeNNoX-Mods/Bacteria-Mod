@@ -61,21 +61,26 @@ public class Bacteria {
 		proxy.init(event);
 	}
 
-	@SubscribeEvent
-	// TODO: This should be ForgeSubscribe, I think
+	@EventHandler
 	public void onMapMissing(FMLMissingMappingsEvent event) {
 		List<MissingMapping> list = event.get();
 
 		for (MissingMapping m : list) {
-			System.out.println("missing: " + m.name);
+			logger.warn("missing: " + m.name);
 			if (m.name.equals("tennox_bacteria:Bunch of Bacteria")) {
 				m.remap(bacteriaBunch);
 			} else if (m.name.equals("tennox_bacteria:Bacteria Jammer")) {
 				m.remap(jammerItem);
 			} else if (m.name.equals("tennox_bacteria:Bacteria Potion")) {
 				m.remap(bacteriaPotion);
-			} else
-				System.out.println("STILL MISSING: " + m.name);
+			}
+
+			else if (m.name.equals("tennox_bacteria:jammerItem")) { // renamed to jammeritem
+				m.remap(jammerItem);
+			}
+
+			else
+				logger.warn("STILL MISSING: " + m.name);
 		}
 	}
 

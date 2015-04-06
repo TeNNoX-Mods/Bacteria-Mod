@@ -10,12 +10,12 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BlockBacteriaJammer extends Block implements IBlockWithName {
 
-	private final String name = "tennox_jammer";
+	private final String name = "jammer";
 
 	public BlockBacteriaJammer() {
 		super(Material.rock);
 		GameRegistry.registerBlock(this, name);
-		setUnlocalizedName(name);
+		setUnlocalizedName(Bacteria.MODID + "-" + name);
 
 		setCreativeTab(CreativeTabs.tabMisc);
 		setHardness(0.5F);

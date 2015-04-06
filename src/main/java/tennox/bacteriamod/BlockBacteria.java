@@ -11,14 +11,14 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BlockBacteria extends BlockContainer implements IBlockWithName {
 
-	public static final String name = "tennox_bacteria";
+	public static final String name = "bacteria";
 
 	ArrayList<Integer> food = new ArrayList<Integer>();
 
 	protected BlockBacteria() {
 		super(Material.rock);
 		GameRegistry.registerBlock(this, name);
-		setUnlocalizedName(name);
+		setUnlocalizedName(Bacteria.MODID + "-" + name);
 
 		setCreativeTab(CreativeTabs.tabMisc);
 		setHardness(0.07F);

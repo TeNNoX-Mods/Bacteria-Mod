@@ -12,6 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 
 public class TileEntityBacteria extends TileEntity implements IUpdatePlayerListBox {
+
 	IBlockState bacteriaBlock;
 	ArrayList<Food> food;
 	Random rand = new Random();

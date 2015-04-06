@@ -11,15 +11,15 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ItemBacteriaJammer extends Item implements IItemWithName {
 
-	public static final String name = "tennox_jammeritem";
+	public static final String name = "jammeritem";
 
 	int tick;
 	static long num;
 
 	public ItemBacteriaJammer() {
-		this.setUnlocalizedName(name);
 		GameRegistry.registerItem(this, name);
-
+		setUnlocalizedName(Bacteria.MODID + "-" + name);
+		
 		maxStackSize = 64;
 		setCreativeTab(CreativeTabs.tabMisc);
 	}

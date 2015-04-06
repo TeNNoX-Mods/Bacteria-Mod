@@ -11,11 +11,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemBacteria extends Item implements IItemWithName {
 
-	private final String name = "tennox_bacteriaitem";
+	private final String name = "bunch";
 
 	public ItemBacteria() {
-		this.setUnlocalizedName(name);
 		GameRegistry.registerItem(this, name);
+		setUnlocalizedName(Bacteria.MODID + "-" + name);
 
 		maxStackSize = 64;
 		setCreativeTab(CreativeTabs.tabMisc);

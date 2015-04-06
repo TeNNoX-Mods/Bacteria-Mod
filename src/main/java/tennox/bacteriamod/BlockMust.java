@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BlockMust extends Block implements IBlockWithName {
-	private final String name = "tennox_must";
+	private final String name = "must";
 
 	public static final int MAX_GROW_INDEX = 7;
 	public static final PropertyInteger GROWN = PropertyInteger.create("grown", 0, MAX_GROW_INDEX);
@@ -31,7 +31,7 @@ public class BlockMust extends Block implements IBlockWithName {
 	protected BlockMust() {
 		super(Material.sponge);
 		GameRegistry.registerBlock(this, name);
-		setUnlocalizedName(name);
+		setUnlocalizedName(Bacteria.MODID + "-" + name);
 
 		setCreativeTab(CreativeTabs.tabMisc);
 		setHardness(0.6F);

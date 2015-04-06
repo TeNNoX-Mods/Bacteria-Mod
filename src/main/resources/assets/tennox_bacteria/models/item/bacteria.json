@@ -1,5 +1,5 @@
 {
-    "parent": "tennox_bacteria:block/tennox_must",
+    "parent": "tennox_bacteria:block/bacteria",
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

@@ -1,7 +1,7 @@
 {
     "parent": "builtin/generated",
     "textures": {
-        "layer0": "tennox_bacteria:items/bacteriapotion"
+        "layer0": "tennox_bacteria:items/potion"
     },
     "display": {
         "thirdperson": {

@@ -8,12 +8,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BlockBacteriaReplace extends BlockContainer implements IBlockWithName {
-	private static final String name = "tennox_replacer";
+	private static final String name = "replacer";
 
 	protected BlockBacteriaReplace() {
 		super(Material.rock);
 		GameRegistry.registerBlock(this, name);
-		setUnlocalizedName(name);
+		setUnlocalizedName(Bacteria.MODID + "-" + name);
 
 		setCreativeTab(CreativeTabs.tabMisc);
 		setHardness(0.07F);

@@ -9,11 +9,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ItemBacteriaPotion extends Item implements IItemWithName {
 
-	private final String name = "tennox_bacteriapotion";
+	private final String name = "potion";
 
 	public ItemBacteriaPotion() {
-		this.setUnlocalizedName(name);
 		GameRegistry.registerItem(this, name);
+		setUnlocalizedName(Bacteria.MODID + "-" + name);
 		
 		setCreativeTab(CreativeTabs.tabMisc);
 	}
