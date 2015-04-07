@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "grown=0": { "model": "tennox_bacteria:must" },
+        "grown=1": { "model": "tennox_bacteria:must" },
+        "grown=2": { "model": "tennox_bacteria:must" },
+        "grown=3": { "model": "tennox_bacteria:must" },
+        "grown=4": { "model": "tennox_bacteria:must" },
+        "grown=5": { "model": "tennox_bacteria:must" },
+        "grown=6": { "model": "tennox_bacteria:must" },
+        "grown=7": { "model": "tennox_bacteria:must_grown" }
+    }
+}

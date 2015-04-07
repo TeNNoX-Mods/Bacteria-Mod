@@ -1,27 +1,25 @@
 package tennox.bacteriamod;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class ItemBacteriaPotion extends Item {
+public class ItemBacteriaPotion extends Item implements IItemWithName {
 
-	// Items
+	private final String name = "potion";
+
 	public ItemBacteriaPotion() {
-		super();
+		GameRegistry.registerItem(this, name);
+		setUnlocalizedName(Bacteria.MODID + "-" + name);
+		
 		setCreativeTab(CreativeTabs.tabMisc);
 	}
 
 	@Override
-	public void registerIcons(IIconRegister register) {
-		itemIcon = register.registerIcon("tennox_bacteria:bacteriapotion");
-	}
-
-	@Override // EntityPotion
+	// EntityPotion
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
 		if (!player.capabilities.isCreativeMode) {
 			--itemstack.stackSize;
@@ -34,5 +32,10 @@ public class ItemBacteriaPotion extends Item {
 		}
 
 		return itemstack;
+	}
+
+	@Override
+	public String getName() {
+		return name;
 	}
 }
