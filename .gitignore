@@ -5,11 +5,6 @@
 /bin
 /build
 /eclipse
-/saves
-/logs
-/config
-/crash-reports
-/screenshots
 options.txt
 *.log
 *.bat
