@@ -1,6 +1,9 @@
 # TeNNoX' Bacteria Mod
 
-This is the repo for my Minecraft Mod 'Bacteria Mod'
+# MOVED TO [GITLAB](https://gitlab.com/tennox-mods/Bacteria)
+## way cooler + has CI/CD
+
+This ~~is~~ **was** the repo for my Minecraft Mod 'Bacteria Mod'
 
 All info and downloads can be found here:
 
